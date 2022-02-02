@@ -15,7 +15,7 @@ export class R6sService {
   getMatches(): Observable<Match[]> {
     return this.http
       .get(
-        `https://api.pandascore.co/csgo/matches?filter\[opponent_id\]=${this.TEAM_ID}&sort=&page=1&per_page=10`
+        `https://api.pandascore.co/csgo/matches?filter\[opponent_id\]=${this.TEAM_ID}`
       )
       .pipe(map(this.utilsService.mapResponseToMatch));
   }
