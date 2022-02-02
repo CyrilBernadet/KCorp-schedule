@@ -15,6 +15,40 @@ import { ValorantService } from '../services/valorant.service';
 export class ListMatchesComponent implements OnInit {
   matches: Match[] = [];
 
+  model = {
+    left: true,
+    middle: false,
+    right: false,
+  };
+
+  games = [
+    {
+      code: 'league-of-legends',
+      name: 'League of Legends',
+      checked: true,
+    },
+    {
+      code: 'cs-go',
+      name: 'Counter-Strike: Global Offensive',
+      checked: true,
+    },
+    {
+      code: 'valorant',
+      name: 'Valorant',
+      checked: true,
+    },
+    {
+      code: 'r6-siege',
+      name: 'Rainbow Six Siege',
+      checked: true,
+    },
+    {
+      code: 'rl',
+      name: 'Rocket League',
+      checked: true,
+    },
+  ];
+
   constructor(
     private lolService: LolService,
     private csgoService: CsgoService,
@@ -33,8 +67,18 @@ export class ListMatchesComponent implements OnInit {
       this.valorantService.getMatches(),
     ]).subscribe({
       next: (value) => {
-        this.matches = value.flat().sort((a,b) => +new Date(a.begin_at) - +new Date(b.begin_at));
+        this.matches = value
+          .flat()
+          .sort((a, b) => +new Date(a.begin_at) - +new Date(b.begin_at));
       },
     });
+  }
+
+  get filteredMatches(): Match[] {
+    return this.matches.filter((match) =>
+      this.games
+        .filter((game) => game.checked)
+        .some((game) => game.code === match.gameName)
+    );
   }
 }

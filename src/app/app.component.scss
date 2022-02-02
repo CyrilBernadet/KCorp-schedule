@@ -1,9 +1,12 @@
 .title {
   color: white;
   background-color: black;
-  height: 5vh;
+  height: 7vh;
   padding: 0.5rem;
   padding-left: 3rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .container {
