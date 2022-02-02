@@ -1,0 +1,17 @@
+<div class="row align-items-start" *ngFor="let match of matches">
+  <div class="col match">
+    <div class="row">
+      <div class="col">
+        {{ match.begin_at }}
+      </div>
+      <div class="col" *ngFor="let opponent of match.opponents">
+        <img [src]="opponent.image_url" [alt]="opponent.name" />{{
+          opponent.name
+        }}
+      </div>
+      <div class="col">
+        <img [src]="match.league.image_url" [alt]="match.league.name" />
+      </div>
+    </div>
+  </div>
+</div>
