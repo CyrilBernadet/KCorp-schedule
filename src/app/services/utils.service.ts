@@ -13,7 +13,7 @@ export class UtilsService {
         id: item.id,
         opponents: item.opponents.map((opp: any) => opp.opponent as Team),
         begin_at: item.begin_at,
-        gameName: item.videogame.name,
+        gameName: item.videogame.slug,
         league: item.league
       };
     });
