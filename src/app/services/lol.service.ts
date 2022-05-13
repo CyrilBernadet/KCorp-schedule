@@ -17,7 +17,7 @@ export class LolService {
   getLecMatches(): Observable<Match[]> {
     return this.http
       .get(
-        `https://api.pandascore.co/lol/matches?filter\[opponent_id\]=${this.LEC_ID}`
+        `https://api.pandascore.co/matches?filter\[opponent_id\]=${this.LEC_ID}`
       )
       .pipe(map(this.utilsService.mapResponseToMatch));
   }
@@ -25,7 +25,7 @@ export class LolService {
   getLflMatches(): Observable<Match[]> {
     return this.http
       .get(
-        `https://api.pandascore.co/lol/matches?filter\[opponent_id\]=${this.LFL_ID}`
+        `https://api.pandascore.co/matches?filter\[opponent_id\]=${this.LFL_ID}`
       )
       .pipe(map(this.utilsService.mapResponseToMatch));
   }
