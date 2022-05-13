@@ -81,10 +81,7 @@
               "browserTarget": "Vita-schedule:build:development"
             }
           },
-          "defaultConfiguration": "development",
-          "options": {
-            "proxyConfig": "src/proxy.conf.json"
-          }
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -114,7 +111,7 @@
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref":"/",
-            "cname": "vistality-schedule.ddns/net"
+            "cname": "vitality-schedule.ddns.net"
           }
         }
       }

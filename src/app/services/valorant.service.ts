@@ -15,7 +15,7 @@ export class ValorantService {
   getMatches(): Observable<Match[]> {
     return this.http
       .get(
-        `/v1/matches?filter\[opponent_id\]=${this.TEAM_ID}`
+        `https://api.pandascore.co/matches?filter\[opponent_id\]=${this.TEAM_ID}`
       )
       .pipe(map(this.utilsService.mapResponseToMatch));
   }
