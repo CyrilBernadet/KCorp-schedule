@@ -3,7 +3,6 @@ import { forkJoin } from 'rxjs';
 import { Match } from '../models/match.model';
 import { CsgoService } from '../services/csgo.service';
 import { LolService } from '../services/lol.service';
-import { R6sService } from '../services/r6s.service';
 import { RlService } from '../services/rl.service';
 import { ValorantService } from '../services/valorant.service';
 
@@ -38,11 +37,6 @@ export class ListMatchesComponent implements OnInit {
       checked: true,
     },
     {
-      code: 'r6-siege',
-      name: 'Rainbow Six Siege',
-      checked: true,
-    },
-    {
       code: 'rl',
       name: 'Rocket League',
       checked: true,
@@ -52,7 +46,6 @@ export class ListMatchesComponent implements OnInit {
   constructor(
     private lolService: LolService,
     private csgoService: CsgoService,
-    private r6sService: R6sService,
     private rlService: RlService,
     private valorantService: ValorantService
   ) {}
@@ -62,7 +55,6 @@ export class ListMatchesComponent implements OnInit {
       this.lolService.getLecMatches(),
       this.lolService.getLflMatches(),
       this.csgoService.getMatches(),
-      this.r6sService.getMatches(),
       this.rlService.getMatches(),
       this.valorantService.getMatches(),
     ]).subscribe({

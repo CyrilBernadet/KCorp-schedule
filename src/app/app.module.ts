@@ -9,7 +9,6 @@ import { VitHttpInterceptor } from './interceptors/http.interceptor';
 import { ListMatchesComponent } from './list-matches/list-matches.component';
 import { CsgoMatchDetailsComponent } from './match-details/csgo-match-details/csgo-match-details.component';
 import { LolMatchDetailsComponent } from './match-details/lol-match-details/lol-match-details.component';
-import { R6sMatchDetailsComponent } from './match-details/r6s-match-details/r6s-match-details.component';
 import { RlMatchDetailsComponent } from './match-details/rl-match-details/rl-match-details.component';
 import { ValorantMatchDetailsComponent } from './match-details/valorant-match-details/valorant-match-details.component';
 
@@ -19,7 +18,6 @@ import { ValorantMatchDetailsComponent } from './match-details/valorant-match-de
     ListMatchesComponent,
     LolMatchDetailsComponent,
     CsgoMatchDetailsComponent,
-    R6sMatchDetailsComponent,
     RlMatchDetailsComponent,
     ValorantMatchDetailsComponent,
   ],
