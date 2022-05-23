@@ -6,7 +6,6 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class VitHttpInterceptor implements HttpInterceptor {
@@ -16,11 +15,7 @@ export class VitHttpInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const authReq = req.clone({
       headers: req.headers
-        .set('Accept', 'application/json')
-        .set(
-          'Authorization',
-          `Bearer ${environment.API_TOKEN}`
-        ),
+        .set('Accept', 'application/json'),
     });
 
     return next.handle(authReq);
