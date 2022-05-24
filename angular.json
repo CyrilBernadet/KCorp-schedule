@@ -110,7 +110,6 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref":"/",
             "cname": "vitality-schedule.ddns.net"
           }
         }

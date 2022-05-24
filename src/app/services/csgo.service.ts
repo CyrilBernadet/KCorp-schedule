@@ -16,7 +16,7 @@ export class CsgoService {
   getMatches(): Observable<Match[]> {
     return this.http
       .get(
-        `https://api.pandascore.co/matches?filter\[opponent_id\]=${this.TEAM_ID}&token=${environment.API_TOKEN}`
+        `https://vitality-schedule.herokuapp.com/api/matches?teamIds=${this.TEAM_ID}`
       )
       .pipe(map(this.utilsService.mapResponseToMatch));
   }
