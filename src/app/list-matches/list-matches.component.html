@@ -9,7 +9,7 @@
 
 <div>
   <ngb-accordion [closeOthers]="true">
-    <ngb-panel *ngFor="let match of matches">
+    <ngb-panel *ngFor="let match of filteredMatches">
       <ng-template ngbPanelHeader>
         <button ngbPanelToggle class="btn container-fluid">
           <div class="row">

@@ -48,12 +48,20 @@ export class ListMatchesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.matchesService.getMatches(this.games.filter(game => game.checked).map(game => game.teams).flat()).subscribe({
+    this.matchesService.getMatches(this.games.map(game => game.teams).flat()).subscribe({
       next: (value) => {
         this.matches = value
           .flat()
           .sort((a, b) => +new Date(a.begin_at) - +new Date(b.begin_at));
       },
     });
+  }
+
+  get filteredMatches(): Match[] {
+    return this.matches.filter((match) =>
+      this.games
+        .filter((game) => game.checked)
+        .some((game) => game.code === match.gameName)
+    );
   }
 }
