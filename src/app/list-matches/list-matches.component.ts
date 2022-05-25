@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Match } from '../models/match.model';
 import { MatchesService } from '../services/matches.service';
@@ -46,22 +47,36 @@ export class ListMatchesComponent implements OnInit {
   loading = false;
 
   constructor(
-    private matchesService: MatchesService
-  ) {}
+    private matchesService: MatchesService,
+    private scroller: ViewportScroller
+  ) {
+    this.scroller.setOffset([0, 150]);
+  }
 
   ngOnInit(): void {
     this.loading = true;
 
-    this.matchesService.getMatches(this.games.map(game => game.teams).flat()).subscribe({
-      next: (value) => {
-        this.matches = value
-          .flat()
-          .sort((a, b) => +new Date(a.begin_at) - +new Date(b.begin_at));
-      },
-      complete: () => {
-        this.loading = false;
-      }
-    });
+    this.matchesService
+      .getMatches(this.games.map((game) => game.teams).flat())
+      .subscribe({
+        next: (value) => {
+          this.matches = value
+            .flat()
+            .sort((a, b) => +new Date(a.begin_at) - +new Date(b.begin_at));
+
+          setTimeout(() => {
+            this.scroller.scrollToAnchor(
+              `${
+                this.matches.filter((match) => new Date(match.begin_at) > new Date())[0]
+                  .id
+              }`
+            );
+          });
+        },
+        complete: () => {
+          this.loading = false;
+        },
+      });
   }
 
   get filteredMatches(): Match[] {
