@@ -43,17 +43,24 @@ export class ListMatchesComponent implements OnInit {
     },
   ];
 
+  loading = false;
+
   constructor(
     private matchesService: MatchesService
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
+
     this.matchesService.getMatches(this.games.map(game => game.teams).flat()).subscribe({
       next: (value) => {
         this.matches = value
           .flat()
           .sort((a, b) => +new Date(a.begin_at) - +new Date(b.begin_at));
       },
+      complete: () => {
+        this.loading = false;
+      }
     });
   }
 
