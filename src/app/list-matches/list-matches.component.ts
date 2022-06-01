@@ -64,7 +64,7 @@ export class ListMatchesComponent implements OnInit {
 
   loadMatches() {
     this.matchesService
-      .getMatches(this.games.map((game) => game.teams).flat())
+      .getMatches(this.games.filter((game) => game.checked).map((game) => game.teams).flat())
       .subscribe({
         next: (value) => {
           const matches = value

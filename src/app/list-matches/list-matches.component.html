@@ -1,7 +1,7 @@
 <div class="filter text-center sticky-top">
   <div class="btn-group btn-group-toggle">
     <label class="btn-primary" ngbButtonLabel *ngFor="let game of games">
-      <input type="checkbox" ngbButton [(ngModel)]="game.checked" />
+      <input type="checkbox" ngbButton [(ngModel)]="game.checked" (change)="loadMatches()"/>
       {{ game.name }}
     </label>
   </div>
