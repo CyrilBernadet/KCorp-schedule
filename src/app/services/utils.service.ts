@@ -14,7 +14,8 @@ export class UtilsService {
         opponents: item.opponents.map((opp: any) => opp.opponent as Team),
         begin_at: item.begin_at,
         gameName: item.videogame.slug,
-        league: item.league
+        league: item.league,
+        status: item.status
       };
     });
   }

@@ -7,4 +7,5 @@ export class Match {
   begin_at!: Date;
   gameName!: string;
   league!: League;
+  status!: string;
 }

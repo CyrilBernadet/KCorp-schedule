@@ -9,7 +9,10 @@ import { MatchesService } from '../services/matches.service';
   styleUrls: ['./list-matches.component.scss'],
 })
 export class ListMatchesComponent implements OnInit {
-  matches: Match[] = [];
+
+  finishedMatches: Match[] = [];
+  runningMatches: Match[] = [];
+  upcomingMatches: Match[] = [];
 
   model = {
     left: true,
@@ -56,34 +59,33 @@ export class ListMatchesComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
 
+    this.loadMatches();
+  }
+
+  loadMatches() {
     this.matchesService
       .getMatches(this.games.map((game) => game.teams).flat())
       .subscribe({
         next: (value) => {
-          this.matches = value
+          const matches = value
             .flat()
             .sort((a, b) => +new Date(a.begin_at) - +new Date(b.begin_at));
 
+          this.finishedMatches = matches.filter((match) => match.status === 'finished');
+          this.runningMatches = matches.filter((match) => match.status === 'running');
+          this.upcomingMatches = matches.filter((match) => match.status === 'not_started');
+
           setTimeout(() => {
-            this.scroller.scrollToAnchor(
-              `${
-                this.matches.filter((match) => new Date(match.begin_at) > new Date())[0]
-                  .id
-              }`
-            );
+            if (this.runningMatches.length) {
+              this.scroller.scrollToAnchor('runningMatches');
+            } else {
+              this.scroller.scrollToAnchor('upcomingMatches');
+            }
           });
         },
         complete: () => {
           this.loading = false;
         },
       });
-  }
-
-  get filteredMatches(): Match[] {
-    return this.matches.filter((match) =>
-      this.games
-        .filter((game) => game.checked)
-        .some((game) => game.code === match.gameName)
-    );
   }
 }

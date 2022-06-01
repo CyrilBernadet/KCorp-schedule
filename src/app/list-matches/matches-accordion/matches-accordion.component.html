@@ -1,0 +1,35 @@
+<ngb-accordion [closeOthers]="true">
+  <ngb-panel *ngFor="let match of matches">
+    <ng-template ngbPanelHeader>
+      <button ngbPanelToggle class="btn container-fluid">
+        <div class="row" [id]="match.id">
+          <div class="col">
+            {{ match.begin_at | date: "dd/MM/yyyy HH:mm" }}
+          </div>
+          <div class="col" *ngFor="let opponent of match.opponents">
+            <img [src]="opponent.image_url" [alt]="opponent.name" />{{
+              opponent.name
+            }}
+          </div>
+          <div class="col">
+            <img [src]="match.league.image_url" [alt]="match.league.name" />
+          </div>
+        </div>
+      </button>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <ng-container [ngSwitch]="match.gameName">
+        <app-lol-match-details
+          *ngSwitchCase="'league-of-legends'"
+        ></app-lol-match-details>
+        <app-csgo-match-details
+          *ngSwitchCase="'cs-go'"
+        ></app-csgo-match-details>
+        <app-rl-match-details *ngSwitchCase="'rl'"></app-rl-match-details>
+        <app-valorant-match-details
+          *ngSwitchCase="'valorant'"
+        ></app-valorant-match-details>
+      </ng-container>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
