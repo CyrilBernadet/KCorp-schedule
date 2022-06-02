@@ -74,16 +74,16 @@ export class ListMatchesComponent implements OnInit {
           this.finishedMatches = matches.filter((match) => match.status === 'finished');
           this.runningMatches = matches.filter((match) => match.status === 'running');
           this.upcomingMatches = matches.filter((match) => match.status === 'not_started');
-
+        },
+        complete: () => {
           setTimeout(() => {
             if (this.runningMatches.length) {
               this.scroller.scrollToAnchor('runningMatches');
             } else {
               this.scroller.scrollToAnchor('upcomingMatches');
             }
-          });
-        },
-        complete: () => {
+          }, 100);
+
           this.loading = false;
         },
       });
