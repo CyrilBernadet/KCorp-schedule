@@ -2,23 +2,27 @@
   <ngb-panel *ngFor="let match of matches">
     <ng-template ngbPanelHeader>
       <button ngbPanelToggle class="btn container-fluid">
-        <div class="row" [id]="match.id">
-          <div class="col">
-            {{ match.begin_at | date: "dd/MM/yyyy HH:mm" }}
+        <div class="row align-items-center" [id]="match.id">
+          <div class="col-auto text-right date">
+            <div>{{ match.begin_at | date: "dd/MM/yyyy" }}</div>
+            <div>{{ match.begin_at | date: "HH:mm" }}</div>
           </div>
-          <div class="col text-right">
+          <div class="col text-right team">
             {{ match.opponents[0].name }}
-            <img [src]="match.opponents[0].image_url" [alt]="match.opponents[0].name" />
+            <img *ngIf="match.opponents[0].image_url" [src]="match.opponents[0].image_url" [alt]="match.opponents[0].name" />
           </div>
           <div class="col-auto score">
             <ng-container *ngIf="match.status === 'finished'" >{{ getTeamScore(match, match.opponents[0].id) }} - {{ getTeamScore(match, match.opponents[1].id) }}</ng-container>
           </div>
-          <div class="col text-left">
-            <img [src]="match.opponents[1].image_url" [alt]="match.opponents[1].name" />
+          <div class="col text-left team">
+            <img *ngIf="match.opponents[1].image_url" [src]="match.opponents[1].image_url" [alt]="match.opponents[1].name" />
             {{ match.opponents[1].name }}
           </div>
-          <div class="col">
-            <img [src]="match.league.image_url" [alt]="match.league.name" />
+          <div class="col league">
+            <img *ngIf="match.league.image_url" [src]="match.league.image_url" [alt]="match.league.name" />
+            <div *ngIf="!match.league.image_url" >
+                {{ match.league.name }}
+            </div>
           </div>
         </div>
       </button>

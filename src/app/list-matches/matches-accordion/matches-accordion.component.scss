@@ -1,8 +1,18 @@
 img {
   max-height: 3rem;
+  margin:  0 0.5rem;
+}
+
+.date, .team {
+  font-size: 1.2rem;
+}
+
+.league {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .score {
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 600;
 }
