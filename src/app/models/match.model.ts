@@ -1,3 +1,4 @@
+import { Stream } from './stream.model';
 import { League } from './league.model';
 import { Result } from './result.model';
 import { Team } from './team.model';
@@ -10,4 +11,5 @@ export class Match {
   league!: League;
   status!: string;
   results!: Result[];
+  streams!: Stream[];
 }

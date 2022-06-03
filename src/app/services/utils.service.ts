@@ -17,7 +17,13 @@ export class UtilsService {
         gameName: item.videogame.slug,
         league: item.league,
         status: item.status,
-        results: item.results
+        results: item.results,
+        streams: item.streams_list.map((stream: any) => {
+          return {
+            language: stream.language === 'en' ? 'gb' : stream.language,
+            url: stream.raw_url
+          }
+        }).sort((a:any,b:any) => a.language.localeCompare(b.language))
       };
     });
   }

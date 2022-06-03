@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Match } from 'src/app/models/match.model';
 
 @Component({
   selector: 'app-lol-match-details',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lol-match-details.component.scss']
 })
 export class LolMatchDetailsComponent implements OnInit {
+
+  @Input()
+  match!: Match;
 
   constructor() { }
 
