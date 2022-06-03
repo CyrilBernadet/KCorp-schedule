@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Match } from '../models/match.model';
+import { Result } from '../models/result.model';
 import { Team } from '../models/team.model';
 
 @Injectable({
@@ -15,7 +16,8 @@ export class UtilsService {
         begin_at: item.begin_at,
         gameName: item.videogame.slug,
         league: item.league,
-        status: item.status
+        status: item.status,
+        results: item.results
       };
     });
   }

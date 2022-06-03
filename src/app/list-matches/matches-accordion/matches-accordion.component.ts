@@ -16,4 +16,8 @@ export class MatchesAccordionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getTeamScore(match: Match, teamId: number): number {
+    return match.results.filter(result => result.team_id === teamId)[0].score;
+  }
+
 }
