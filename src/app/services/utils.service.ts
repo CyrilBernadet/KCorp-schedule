@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Match } from '../models/match.model';
-import { Result } from '../models/result.model';
+import { Opponent } from '../models/opponent.model';
 import { Team } from '../models/team.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilsService {
-  mapResponseToMatch(response: Object): Match[] {
+  mapResponseToMatchArray(response: Object): Match[] {
     const objectArray: any[] = response as any[];
     return objectArray.map((item) => {
       return {
@@ -26,5 +26,13 @@ export class UtilsService {
         }).sort((a:any,b:any) => a.language.localeCompare(b.language))
       };
     });
+  }
+
+  mapResponseToOpponents(item: any): Opponent[] {
+    if (item && item.opponents?.length) {
+      return item.opponents.map((opponent: any) => opponent as Opponent);
+    } else {
+      return [];
+    }
   }
 }

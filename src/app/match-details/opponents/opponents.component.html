@@ -1,0 +1,21 @@
+<div class="row align-items-center">
+  <div class="col" *ngFor="let opponent of opponents" >
+    <div class="row">
+      <div class="col-auto" *ngIf="opponent.image_url" >
+        <img [src]="opponent.image_url" [alt]="opponent.name" />
+      </div>
+      <div class="col">
+        {{ opponent.name }}
+      </div>
+    </div>
+
+    <div class="row align-items-center" *ngFor="let player of opponent.players" >
+      <div class="col text-right">
+        <img [src]="player.image_url" [alt]="player.name" *ngIf="player.image_url" />
+      </div>
+      <div class="col text-left">
+        {{ player.name }}
+      </div>
+    </div>
+  </div>
+</div>
