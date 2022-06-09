@@ -1,11 +1,15 @@
-<div class="filter text-center sticky-top">
-  <div class="btn-group btn-group-toggle">
-    <label class="btn-primary" ngbButtonLabel *ngFor="let game of games">
-      <input type="checkbox" ngbButton [(ngModel)]="game.checked" (change)="loadMatches()"/>
-      {{ game.name }}
-    </label>
+<nav class="navbar navbar-expand-lg sticky-top bg-dark">
+  <div class="container">
+    <div class="navbar-brand title">Vitality Schedule</div>
+    <div class="navbar-text nav-fill">
+      <ul class="list-inline text-right">
+        <li class="list-inline-item" *ngFor="let game of games" (click)="selectGame(game.code)">
+          <img [class]="game.checked ? 'selected' : ''" [src]="'../../assets/logos/' + game.code + '.png'" [alt]="game.name" />
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
 
 <div class="d-flex justify-content-center" *ngIf="loading" >
   <div class="spinner-border">

@@ -25,7 +25,7 @@ export class ListMatchesComponent implements OnInit {
       code: 'league-of-legends',
       name: 'League of Legends',
       teams: [115, 126204],
-      checked: true,
+      checked: true
     },
     {
       code: 'cs-go',
@@ -53,7 +53,7 @@ export class ListMatchesComponent implements OnInit {
     private matchesService: MatchesService,
     private scroller: ViewportScroller
   ) {
-    this.scroller.setOffset([0, 150]);
+    this.scroller.setOffset([0, 140]);
   }
 
   ngOnInit(): void {
@@ -87,5 +87,11 @@ export class ListMatchesComponent implements OnInit {
           this.loading = false;
         },
       });
+  }
+
+  selectGame(gameCode: string) {
+    const clickedGame = this.games.filter(game => game.code === gameCode)[0];
+    clickedGame.checked = !clickedGame.checked;
+    this.loadMatches();
   }
 }
