@@ -1,4 +1,4 @@
 <div class="row" *ngFor="let stream of streams" >
-  <div class="col-auto"><span [ngClass]="'flag-icon flag-icon-' + stream.language"></span></div>
-  <div class="col"><a [href]="stream.url" target="_blank">{{ stream.url}}</a></div>
+  <div class="col-1 text-right"><span [ngClass]="'flag-icon flag-icon-' + stream.language"></span></div>
+  <div class="col-11"><a [href]="stream.url" target="_blank">{{ stream.url}}</a></div>
 </div>

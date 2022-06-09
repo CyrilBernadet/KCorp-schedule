@@ -1,19 +1,47 @@
-<div class="row align-items-center">
-  <div class="col" *ngFor="let opponent of opponents" >
-    <div class="row">
-      <div class="col-auto" *ngIf="opponent.image_url" >
-        <img [src]="opponent.image_url" [alt]="opponent.name" />
+<div class="row">
+  <div class="col-12 col-lg-6 text-lg-right">
+    <div class="row mb-3 align-items-center">
+      <div class="order-lg-2 col-2 text-center">
+        <ng-container *ngIf="opponents[0]?.image_url">
+          <img [src]="opponents[0].image_url" [alt]="opponents[0].name" />
+        </ng-container>
       </div>
-      <div class="col">
-        {{ opponent.name }}
+      <div class="order-lg-1 col-10 team-name">
+        {{ opponents[0]?.name }}
       </div>
     </div>
 
-    <div class="row align-items-center" *ngFor="let player of opponent.players" >
-      <div class="col text-right">
-        <img [src]="player.image_url" [alt]="player.name" *ngIf="player.image_url" />
+    <div class="row align-items-center player" *ngFor="let player of opponents[0]?.players" >
+      <div class="col-4 col-lg-2 order-lg-2 text-center">
+        <ng-container *ngIf="player?.image_url">
+          <img [src]="player.image_url" [alt]="player.name" />
+        </ng-container>
       </div>
-      <div class="col text-left">
+      <div class="col-8 col-lg-10 order-lg-1">
+        {{ player.name }}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="row mb-3 align-items-center">
+      <div class="col-2 text-center">
+        <ng-container *ngIf="opponents[1]?.image_url">
+          <img [src]="opponents[1].image_url" [alt]="opponents[1].name" />
+        </ng-container>
+      </div>
+      <div class="col-10 team-name">
+        {{ opponents[1]?.name }}
+      </div>
+    </div>
+
+    <div class="row align-items-center player" *ngFor="let player of opponents[1]?.players" >
+      <div class="col-4 col-lg-2 text-center">
+        <ng-container *ngIf="player?.image_url">
+          <img [src]="player.image_url" [alt]="player.name" />
+        </ng-container>
+      </div>
+      <div class="col-8 col-lg-10 text-left">
         {{ player.name }}
       </div>
     </div>
