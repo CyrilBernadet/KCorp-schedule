@@ -15,11 +15,17 @@ export class LolMatchDetailsComponent implements OnInit {
 
   opponents: Opponent[] = [];
 
+  sortedRoles = ['top', 'jun', 'mid', 'adc', 'sup'];
+
   constructor(private matchesService: MatchesService) { }
 
   ngOnInit(): void {
     this.matchesService.getMatch(this.match.id).subscribe((result) => {
       this.opponents = result;
+
+      this.opponents.forEach((opponent) => {
+        opponent.players.sort((a, b) => this.sortedRoles.indexOf(a.role) - this.sortedRoles.indexOf(b.role))
+      });
     });
   }
 
