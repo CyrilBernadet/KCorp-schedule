@@ -12,4 +12,5 @@ export class Match {
   status!: string;
   results!: Result[];
   streams!: Stream[];
+  winner_id!: number;
 }

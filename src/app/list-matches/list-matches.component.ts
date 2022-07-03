@@ -2,6 +2,7 @@ import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Match } from '../models/match.model';
 import { MatchesService } from '../services/matches.service';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-list-matches',
@@ -20,38 +21,12 @@ export class ListMatchesComponent implements OnInit {
     right: false,
   };
 
-  games = [
-    {
-      code: 'league-of-legends',
-      name: 'League of Legends',
-      teams: [115, 126204],
-      checked: true
-    },
-    {
-      code: 'cs-go',
-      name: 'Counter-Strike: Global Offensive',
-      teams: [3455],
-      checked: true,
-    },
-    {
-      code: 'valorant',
-      name: 'Valorant',
-      teams: [128796],
-      checked: true,
-    },
-    {
-      code: 'rl',
-      name: 'Rocket League',
-      teams: [129919],
-      checked: true,
-    },
-  ];
-
   loading = false;
 
   constructor(
     private matchesService: MatchesService,
-    private scroller: ViewportScroller
+    private scroller: ViewportScroller,
+    private utilsService: UtilsService
   ) {
     this.scroller.setOffset([0, 140]);
   }
@@ -64,7 +39,7 @@ export class ListMatchesComponent implements OnInit {
 
   loadMatches() {
     this.matchesService
-      .getMatches(this.games.filter((game) => game.checked).map((game) => game.teams).flat())
+      .getMatches(this.utilsService.flatGamesIds)
       .subscribe({
         next: (value) => {
           const matches = value
@@ -93,5 +68,9 @@ export class ListMatchesComponent implements OnInit {
     const clickedGame = this.games.filter(game => game.code === gameCode)[0];
     clickedGame.checked = !clickedGame.checked;
     this.loadMatches();
+  }
+
+  get games() {
+    return this.utilsService.games;
   }
 }

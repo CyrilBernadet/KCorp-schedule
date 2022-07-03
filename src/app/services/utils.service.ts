@@ -7,6 +7,33 @@ import { Team } from '../models/team.model';
   providedIn: 'root',
 })
 export class UtilsService {
+  games = [
+    {
+      code: 'league-of-legends',
+      name: 'League of Legends',
+      teams: [115, 126204],
+      checked: true
+    },
+    {
+      code: 'cs-go',
+      name: 'Counter-Strike: Global Offensive',
+      teams: [3455],
+      checked: true,
+    },
+    {
+      code: 'valorant',
+      name: 'Valorant',
+      teams: [128796],
+      checked: true,
+    },
+    {
+      code: 'rl',
+      name: 'Rocket League',
+      teams: [129919],
+      checked: true,
+    },
+  ];
+
   mapResponseToMatchArray(response: Object): Match[] {
     const objectArray: any[] = response as any[];
     return objectArray.map((item) => {
@@ -23,7 +50,8 @@ export class UtilsService {
             language: stream.language === 'en' ? 'gb' : stream.language,
             url: stream.raw_url
           }
-        }).sort((a:any,b:any) => a.language.localeCompare(b.language))
+        }).sort((a:any,b:any) => a.language.localeCompare(b.language)),
+        winner_id: item.winner_id
       };
     });
   }
@@ -34,5 +62,9 @@ export class UtilsService {
     } else {
       return [];
     }
+  }
+
+  get flatGamesIds(): number[] {
+    return this.games.filter((game) => game.checked).map((game) => game.teams).flat();
   }
 }

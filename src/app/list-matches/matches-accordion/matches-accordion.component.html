@@ -1,5 +1,5 @@
 <ngb-accordion [closeOthers]="true">
-  <ngb-panel *ngFor="let match of matches">
+  <ngb-panel *ngFor="let match of matches" [cardClass]="getHeaderClass(match)">
     <ng-template ngbPanelHeader>
       <button ngbPanelToggle class="btn container-fluid">
         <div class="row align-items-center">
