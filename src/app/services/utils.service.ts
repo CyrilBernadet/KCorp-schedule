@@ -11,25 +11,19 @@ export class UtilsService {
     {
       code: 'league-of-legends',
       name: 'League of Legends',
-      teams: [115, 126204],
+      teams: [128268],
       checked: true
-    },
-    {
-      code: 'cs-go',
-      name: 'Counter-Strike: Global Offensive',
-      teams: [3455],
-      checked: true,
     },
     {
       code: 'valorant',
       name: 'Valorant',
-      teams: [128796],
+      teams: [130922],
       checked: true,
     },
     {
       code: 'rl',
       name: 'Rocket League',
-      teams: [129919],
+      teams: [129570],
       checked: true,
     },
   ];
